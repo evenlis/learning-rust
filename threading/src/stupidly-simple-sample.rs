@@ -1,6 +1,4 @@
 use std::thread::Thread;
-use std::io::{File,BufferedReader};
-use std::time;
 
 // Runs at about 8 seconds single-thread, should suffice to measure the impact of multiple threads
 fn stupid_fib(n: int) -> int {
@@ -13,5 +11,16 @@ fn stupid_fib(n: int) -> int {
 }
 
 fn main() {
-    println!("{}", stupid_fib(42));
+    let thread1 = Thread::spawn(move || {
+        println!("{}", stupid_fib(42));
+    });
+    let thread2 = Thread::spawn(move || {
+        println!("{}", stupid_fib(42));
+    });
+    let thread3 = Thread::spawn(move || {
+        println!("{}", stupid_fib(42));
+    });
+    let thread4 = Thread::spawn(move || {
+        println!("{}", stupid_fib(42));
+    });
 }
